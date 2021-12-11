@@ -32,8 +32,13 @@ public class HomeController {
 		String url = "https://twitter.com/hellopolicy/status/867177144815804416";
 //		String url = "https://vimeo.com/20097015";
 		OembedConfig oConfig = new OembedConfig();
+		
 		try {
-			System.out.println(oConfig.OembedConfig(url));
+			URI requestUrl = oConfig.OembedConfig(url);
+			System.out.println(requestUrl);
+			OembedRequest oRequest = new OembedRequest();
+			String data = oRequest.OembedRequest(new DefaultHttpClient(), requestUrl);
+			System.out.println(data);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
