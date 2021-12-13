@@ -50,11 +50,16 @@ public class OembedConfig {
                 JSONObject urlData = (JSONObject) jsonArray.get(0);
 
                 String requestUrls = (String)urlData.get("url");
-                if(requestUrls.contains(host)) {
-                	requestUrl = requestUrls;
+                if(urlData.get("schemes")!=null) {
+	                String requestSchemes = urlData.get("schemes").toString();
+                	if(requestSchemes.contains(host)) {
+                		requestUrl = requestUrls;
+                	}
                 }
+            	if(requestUrls.contains(host)) {
+            		requestUrl = requestUrls;
+            	}
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -65,7 +70,5 @@ public class OembedConfig {
     	if (requestUrl.contains("{format}")) {
     		requestUrl = requestUrl.replace("{format}", "json");
         }
-    	
     }
-
 }
