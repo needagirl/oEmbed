@@ -117,7 +117,7 @@ $(()=>{
 		if(nullCheck==1){
 			var url = "url="+$("#url").val().trim();
 			$.ajax({
-                url:"/codingTest/checkUrl",
+                url:"/oEmbedTest/checkUrl",
                 data: url,
                 success:function(res){
                 	let result = JSON.parse(res);
@@ -148,7 +148,10 @@ $(()=>{
 	                });
 	                $('#list').append(data);
 	                $('#url').val("");
-                }
+                },
+                error:function(error){
+                	console.log(error)
+                },
             });
   		};
 	});
